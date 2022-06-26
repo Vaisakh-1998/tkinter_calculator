@@ -68,10 +68,16 @@ class Calculator:
 		self.create_equals_button()
 					
 	def create_display_labels(self):
-		up_label = tk.Label(self.display_frame, text=self.upper_expression, anchor=tk.E, bg=LIGHT_GRAY, fg=GRAY, font=SMALL_FONT_STYLE)
+		up_label = tk.Label(self.display_frame,
+                                    text=self.upper_expression, 
+                                    anchor=tk.E, bg=LIGHT_GRAY, 
+                                    fg=GRAY, font=SMALL_FONT_STYLE)
 		up_label.pack(expand=True, fill='both')
 		
-		low_label = tk.Label(self.display_frame, text=self.lower_expression, anchor=tk.E, bg=LIGHT_GRAY,  fg=LABEL_COLOR, font=LARGE_FONT_STYLE)
+		low_label = tk.Label(self.display_frame, 
+                                     text=self.lower_expression,
+                                     anchor=tk.E, bg=LIGHT_GRAY,  
+                                     fg=LABEL_COLOR, font=LARGE_FONT_STYLE)
 		low_label.pack(expand=True, fill='both')
 		
 		low_label.config(text="0")
@@ -90,20 +96,29 @@ class Calculator:
 	
 	def create_digit_buttons(self):
 		for digit, grid_value in self.digits.items():
-			button = tk.Button(self.buttons_frame, text=str(digit),bg=WHITE, fg=LABEL_COLOR, font=DIGITS_FONT_STYLE, command=lambda x=digit: self.add_to_expression(x))
+			button = tk.Button(self.buttons_frame,
+                                           text=str(digit),bg=WHITE, 
+                                           fg=LABEL_COLOR, font=DIGITS_FONT_STYLE, 
+                                           command=lambda x=digit: self.add_to_expression(x))
 			button.grid(row=grid_value[0], column=grid_value[1], sticky=tk.NSEW)
 	
 	def create_operator_buttons(self):		
 		i = 0
 		for operator, symbol in self.operations.items():
-			button = tk.Button(self.buttons_frame, text=symbol,bg=OFF_WHITE, fg=BLUE, font=DEFAULT_FONT_STYLE, borderwidth=0,   command=lambda x=operator: self.add_to_expression(x))
+			button = tk.Button(self.buttons_frame,
+                                           text=symbol,bg=OFF_WHITE, fg=BLUE, 
+                                           font=DEFAULT_FONT_STYLE, borderwidth=0,
+                                           command=lambda x=operator: self.add_to_expression(x))
 			button.grid(row=i, column=4, sticky=tk.NSEW)
 			i+=1
 	
 	def create_parentheses_buttons(self):
 		i = 2
 		for el in ["(", ")"]:
-			button = tk.Button(self.buttons_frame, text=el, bg=OFF_WHITE, fg=BLUE, font=DEFAULT_FONT_STYLE, borderwidth=0,  command=lambda x=el:self.add_to_expression(x))
+			button = tk.Button(self.buttons_frame,
+                                           text=el, bg=OFF_WHITE, 
+                                           fg=BLUE, font=DEFAULT_FONT_STYLE, borderwidth=0,  
+                                           command=lambda x=el:self.add_to_expression(x))
 			button.grid(row=0, column=i, sticky=tk.NSEW)				
 			i += 1
 					
@@ -114,13 +129,17 @@ class Calculator:
 		self.update_upper_label()
 	
 	def create_clear_button(self):
-		button = tk.Button(self.buttons_frame, text="C", bg=OFF_WHITE, fg=BLUE, font=DEFAULT_FONT_STYLE, borderwidth=0, command=self.clear)
+		button = tk.Button(self.buttons_frame, 
+                                   text="C", bg=OFF_WHITE, 
+                                   fg=BLUE, font=DEFAULT_FONT_STYLE,
+                                   borderwidth=0, command=self.clear)
 		button.grid(row=0, column=1, sticky=tk.NSEW)
 	
 	def evaluate(self):
 		self.upper_expression = self.lower_expression
 		exp = self.lower_expression
-		if ("sin" in exp) or ("cos" in exp) or ("tan" in exp) or ("cot" in exp) or ("sqrt" in exp):
+		if ("sin" in exp) or ("cos" in exp) or \
+                   ("tan" in exp) or ("cot" in exp) or ("sqrt" in exp):
 			self.add_to_expression(")")
 		try:
 			value = round(eval(self.lower_expression), 5)
@@ -132,7 +151,9 @@ class Calculator:
 		self.update_lower_label()
 		
 	def create_equals_button(self):
-		button = tk.Button(self.buttons_frame, text="=", bg=BLUE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE, borderwidth=0, command=self.evaluate)
+		button = tk.Button(self.buttons_frame, text="=", bg=BLUE,
+                                   fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,
+                                   borderwidth=0, command=self.evaluate)
 		button.grid(row=4, column=4, sticky=tk.NSEW)
 	
 	def expand(self):
@@ -146,7 +167,9 @@ class Calculator:
 			self.collapse = True
 	
 	def create_collapsible_button(self):
-		button = tk.Button(self.buttons_frame, text="\u21F1", bg=OFF_WHITE, fg=BLUE, font=DEFAULT_FONT_STYLE, borderwidth=0, command=self.expand)
+		button = tk.Button(self.buttons_frame, text="\u21F1", 
+                                   bg=OFF_WHITE, fg=BLUE, font=DEFAULT_FONT_STYLE, 
+                                   borderwidth=0, command=self.expand)
 		button.grid(row=4, column=1, sticky=tk.NSEW)
 		return button
 	
