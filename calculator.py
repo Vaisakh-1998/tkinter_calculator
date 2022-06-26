@@ -183,18 +183,26 @@ class Calculator:
 		self.evaluate()
 	
 	def create_pi_num_button(self):
-		button = tk.Button(self.collapsible_frame, text="π", bg=OFF_WHITE, fg=BLUE, font=DEFAULT_FONT_STYLE, borderwidth=0, command=self.pi)
+		button = tk.Button(self.collapsible_frame, text="π",
+                                   bg=OFF_WHITE, fg=BLUE, font=DEFAULT_FONT_STYLE, 
+                                   borderwidth=0, command=self.pi)
 		button.grid(row=0, column=4, sticky=tk.NSEW)
 	
 	def create_sqrt_button(self):
-		button = tk.Button(self.collapsible_frame, text="\u00B2\u221A", bg=OFF_WHITE, fg=BLUE, font=DEFAULT_FONT_STYLE, borderwidth=0, command=lambda : self.add_to_expression("sqrt("))
+		button = tk.Button(self.collapsible_frame, text="\u00B2\u221A",
+                                   bg=OFF_WHITE, fg=BLUE,
+                                   font=DEFAULT_FONT_STYLE, borderwidth=0, 
+                                   command=lambda : self.add_to_expression("sqrt("))
 		button.grid(row=0, column=3, sticky=tk.NSEW)
 	
 	def create_trigonometry_buttons(self):
 		trig = ["sin", "cos", "tan", "cot"]
 		trig_op = ["sin(", "cos(", "tan(", "cot("]
 		for i in range(1, 5):
-			button = tk.Button(self.collapsible_frame, text=trig[i-1], bg=OFF_WHITE, fg=BLUE, font=TRIG_FONT_STYLE, borderwidth=0, command=lambda x=trig_op[i-1]: self.add_to_expression (x))
+			button = tk.Button(self.collapsible_frame,
+                                           text=trig[i-1],bg=OFF_WHITE,
+                                           fg=BLUE, font=TRIG_FONT_STYLE, borderwidth=0,
+                                           command=lambda x=trig_op[i-1]: self.add_to_expression (x))
 			button.grid(row=1, column=i, sticky=tk.NSEW)
 					
 	def percent(self):
@@ -205,7 +213,9 @@ class Calculator:
 		self.update_lower_label()
 	
 	def create_percent_button(self):
-		button= tk.Button(self.collapsible_frame, text="%", bg=OFF_WHITE, fg=BLUE, font=DEFAULT_FONT_STYLE, borderwidth=0,  command=self.percent)
+		button= tk.Button(self.collapsible_frame, text="%", 
+                                  bg=OFF_WHITE, fg=BLUE, font=DEFAULT_FONT_STYLE, 
+                                  borderwidth=0,  command=self.percent)
 		button.grid(row=0, column=2, sticky=tk.NSEW)
 		
 	def square(self):
@@ -219,7 +229,10 @@ class Calculator:
 			self.update_lower_label()
 	
 	def create_square_button(self):
-		button = tk.Button(self.collapsible_frame, text=" x\u00b2", bg=OFF_WHITE, fg=BLUE, font=DEFAULT_FONT_STYLE, borderwidth=0, command=self.square, width=2)
+		button = tk.Button(self.collapsible_frame, text=" x\u00b2",
+                                   bg=OFF_WHITE, fg=BLUE, 
+                                   font=DEFAULT_FONT_STYLE, borderwidth=0,
+                                   command=self.square, width=2)
 		button.grid(row=0, column=1, sticky=tk.NS)
 	
 	def create_collapsible_frame(self):
